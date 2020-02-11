@@ -14,7 +14,7 @@ var config = {
 	                      // - another specific IPv4/6 to listen on a specific interface
 	                      // - "", "0.0.0.0", "::" to listen on any interface
 	                      // Default, when address config is left out, is "localhost"
-	port: process.env.PORT || 8080,
+	port: 8080,
 	ipWhitelist: [],                                       // Set [] to allow all IP addresses
 	                                                       // or add a specific IPv4 of 192.168.1.5 :
 	                                                       // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
@@ -24,7 +24,7 @@ var config = {
 	language: "de",
 	timeFormat: 24,
 	units: "metric",
-	// serverOnly:  true/false/"local" ,
+	serverOnly:  true ,
 			     // local for armv6l processors, default 
 			     //   starts serveronly and then starts chrome browser
 			     // false, default for all  NON-armv6l devices
