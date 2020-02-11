@@ -18,8 +18,8 @@ var Utils = require(__dirname + "/utils.js");
 var Server = function(config, callback) {
 
 	var port = config.port;
-	if (process.env.MM_PORT) {
-		port = process.env.MM_PORT;
+	if (process.env.PORT) {
+		port = process.env.PORT;
 	}
 
 	console.log("Starting server on port " + port + " ... ");
