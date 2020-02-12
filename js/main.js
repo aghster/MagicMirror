@@ -335,7 +335,7 @@ var MM = (function() {
 			var showWrapper = false;
 			Array.prototype.forEach.call(moduleWrappers, function(moduleWrapper) {
 				var wrapperStyle = moduleWrapper.getAttribute("style") || "";
-				var wrapperPositionMatch = wrapperStyle.match(/position\s*:\s*(.+?)\s*;/)
+				var wrapperPositionMatch = wrapperStyle.match(/position\s*:\s*(.+?)\s*;/);
 				var wrapperPosition = (wrapperPositionMatch)? wrapperPositionMatch[0] : "";
 				if (wrapperPosition === "" || wrapperPosition === "static") {
 					showWrapper = true;
@@ -467,7 +467,7 @@ var MM = (function() {
 		var currentStyle = el.getAttribute("style") || "";
 		
 		var re = new RegExp(property + '\s*:\s*.+?\s*;');
-		var newStyle = currentStyle.replace(re, property ": " + value + ";");
+		var newStyle = currentStyle.replace(re, property + ": " + value + ";");
 		
 		el.setAttribute("style", newStyle);
 	};
