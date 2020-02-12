@@ -49,29 +49,14 @@ var config = {
 			}
 		},
 		{
-			module: "weather",
-			position: "top_right",
+			module: 'MMM-forecast-io',
+			position: 'top_right',  // This can be any of the regions.
 			config: {
-				weatherProvider: 'darksky',
-				apiBase: 'https://cors-anywhere.herokuapp.com/https://api.darksky.net',
-				weatherEndpoint: '/forecast',
-				apiKey: '19cbc3b59ada2c4e714717dc7862151c',
-				lat: 47.9817,
-				lon: 7.8959,
-				type: 'current'
-			}
-		},
-		{
-			module: "weather",
-			position: "top_right",
-			config: {
-				weatherProvider: 'darksky',
-				apiBase: 'https://cors-anywhere.herokuapp.com/https://api.darksky.net',
-				weatherEndpoint: '/forecast',
-				apiKey: '19cbc3b59ada2c4e714717dc7862151c',
-				lat: 47.9817,
-				lon: 7.8959,
-				type: 'forecast'
+				// See 'Configuration options' for more information.
+				apiKey: '19cbc3b59ada2c4e714717dc7862151c', // Dark Sky API key.
+				// Only required if geolocation doesn't work:
+				latitude: 47.9817,
+				longitude: 7.8959
 			}
 		},
 		{
