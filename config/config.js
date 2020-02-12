@@ -44,37 +44,41 @@ var config = {
 		},
 		{
 			module: "calendar",
-			header: "US Holidays",
+			header: "Feiertage",
 			position: "top_left",
 			config: {
 				calendars: [
 					{
 						symbol: "calendar-check",
-						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"					}
-				]
+						url: "webcal://www.schulferien.eu/downloads/ical4.php?land=BW&type=0&year=2020"					}
+				],
+				fetchInterval: 86400000
 			}
 		},
 		{
-			module: "compliments",
-			position: "lower_third"
-		},
-		{
-			module: "currentweather",
+			module: "weather",
 			position: "top_right",
 			config: {
-				location: "New York",
-				locationID: "",  //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				weatherProvider: 'darksky',
+				apiBase: 'https://cors-anywhere.herokuapp.com/https://api.darksky.net',
+				weatherEndpoint: '/forecast',
+				apiKey: '19cbc3b59ada2c4e714717dc7862151c',
+				lat: 47.9817,
+				lon: 7.8959,
+				type: 'current'
 			}
 		},
 		{
-			module: "weatherforecast",
+			module: "weather",
 			position: "top_right",
-			header: "Weather Forecast",
 			config: {
-				location: "New York",
-				locationID: "5128581",  //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-				appid: "YOUR_OPENWEATHER_API_KEY"
+				weatherProvider: 'darksky',
+				apiBase: 'https://cors-anywhere.herokuapp.com/https://api.darksky.net',
+				weatherEndpoint: '/forecast',
+				apiKey: '19cbc3b59ada2c4e714717dc7862151c',
+				lat: 47.9817,
+				lon: 7.8959,
+				type: 'forecast'
 			}
 		},
 		{
@@ -83,14 +87,15 @@ var config = {
 			config: {
 				feeds: [
 					{
-						title: "New York Times",
-						url: "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+						title: "FAZ",
+						url: "http://www.faz.net/rss/aktuell/"
 					}
 				],
 				showSourceTitle: true,
 				showPublishDate: true,
 				broadcastNewsFeeds: true,
-				broadcastNewsUpdates: true
+				broadcastNewsUpdates: true,
+				updateInterval: 30000
 			}
 		},
 		{
