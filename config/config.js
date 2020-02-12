@@ -43,16 +43,9 @@ var config = {
 			position: "top_left"
 		},
 		{
-			module: "calendar",
-			header: "Feiertage",
+			module: "calendar_monthly",
 			position: "top_left",
 			config: {
-				calendars: [
-					{
-						symbol: "calendar-check",
-						url: "webcal://www.schulferien.eu/downloads/ical4.php?land=BW&type=0&year=2020"					}
-				],
-				fetchInterval: 86400000
 			}
 		},
 		{
