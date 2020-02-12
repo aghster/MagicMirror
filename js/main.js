@@ -464,10 +464,10 @@ var MM = (function() {
 	 * argument value string - the new value of the CSS property.
 	 */
 	var setInlineStyle = function(el, property, value) {
+		var re = new RegExp(property + '\s*:\s*.+?\s*;');
 		var currentStyle = el.getAttribute("style") || "";
 		
-		var re = new RegExp(property + '\s*:\s*.+?\s*;');
-		var newStyle = currentStyle.replace(re, property + ": " + value + ";");
+		var newStyle = (re.test(currentStyle))? currentStyle.replace(re, property + ": " + value + ";") : currentStyle + " " + property + ": " + value + ";";
 		
 		el.setAttribute("style", newStyle);
 	};
