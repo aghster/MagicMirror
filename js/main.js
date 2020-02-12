@@ -240,7 +240,7 @@ var MM = (function() {
 
 		var moduleWrapper = document.getElementById(module.identifier);
 		if (moduleWrapper !== null) {
-			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s;");
+			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s");
 			setInlineStyle(moduleWrapper, "opacity", "0");
 
 			clearTimeout(module.showHideTimer);
@@ -296,7 +296,7 @@ var MM = (function() {
 
 		var moduleWrapper = document.getElementById(module.identifier);
 		if (moduleWrapper !== null) {
-			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s;");
+			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s");
 			// Restore the position. See hideModule() for more info.
 			setInlineStyle(moduleWrapper, "position", "static");
 
