@@ -96,7 +96,7 @@ var config = {
 			module: 'MMM-SoccerLiveScore',
 			position: 'top_left',
 			config: {
-				leagues: [35],
+				leagues: 35,
 				showNames: true,
 				showLogos: false,
 				displayTime: 60 * 1000,
