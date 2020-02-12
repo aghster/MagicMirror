@@ -97,10 +97,10 @@ var config = {
 			position: 'top_left',
 			config: {
 				leagues: [35],
-			showNames: true,
-			showLogos: false,
-			displayTime: 60 * 1000,
-			showTables: true
+				showNames: true,
+				showLogos: false,
+				displayTime: 60 * 1000,
+				showTables: true
 			}
 		},
 	]
