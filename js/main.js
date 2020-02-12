@@ -582,4 +582,21 @@ if (typeof Object.assign !== "function") {
 	})();
 }
 
+// Add polyfill for HTMLElement.style.
+if (typeof HTMLElement.prototype.style === "undefined") {
+	Object.defineProperty(HTMLElement.prototype, "style", {
+		get: function style() {
+			var styleDeclaration = Object.create(CSSStyleDeclaration);
+			styleDeclaration.cssText = this.getAttribute("style") || "";
+			return styleDeclaration;
+		},
+		set: function style(key, value) {
+			var re = new RegExp(key + '\s*:\s*.+?\s*;');
+			var currentStyle = this.getAttribute("style") || "";
+			var newStyle = re.test(currentStyle)? currentStyle.replace(re, key + ": " + value + ";") : key + ": " + value + "; " + currentStyle;
+			this.setAttribute("style", newStyle);
+		}
+	});
+}
+
 MM.init();
