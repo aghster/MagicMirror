@@ -93,8 +93,9 @@ var config = {
 				],
 				showSourceTitle: true,
 				showPublishDate: true,
-				broadcastNewsFeeds: true,
-				broadcastNewsUpdates: true,
+				broadcastNewsFeeds: false,
+				broadcastNewsUpdates: false,
+				showDescription: true,
 				updateInterval: 30000
 			}
 		},
