@@ -45,7 +45,7 @@ var MM = (function() {
 			dom.appendChild(moduleHeader);
 
 			if (typeof module.getHeader() === "undefined" || module.getHeader() !== "") {
-				moduleHeader.setAttribute("style", moduleHeader.getAttribute("style").replace(/display\s*:\s*.+\s*;/, "display: none;"));
+				setInlineStyle(moduleHeader, "display", "none");
 			}
 
 			var moduleContent = document.createElement("div");
@@ -214,9 +214,9 @@ var MM = (function() {
 
 		headerWrapper[0].innerHTML = newHeader;
 		if (headerWrapper.length > 0 && newHeader) {
-			headerWrapper[0].setAttribute("style", headerWrapper[0].getAttribute("style").replace(/display\s*:\s*.+\s*;/, "display: block;"));
+			setInlineStyle(headerWrapper[0], "display", "block");
 		} else {
-			headerWrapper[0].setAttribute("style", headerWrapper[0].getAttribute("style").replace(/display\s*:\s*.+\s*;/, "display: none;"));
+			setInlineStyle(headerWrapper[0], "display", "none");
 		}
 	};
 
@@ -240,8 +240,8 @@ var MM = (function() {
 
 		var moduleWrapper = document.getElementById(module.identifier);
 		if (moduleWrapper !== null) {
-			moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/transition\s*:\s*.+\s*;/, "transition: opacity " + speed / 1000 + "s;"));
-			moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/opacity\s*:\s*.+\s*;/, "opacity: 0;"));
+			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s;");
+			setInlineStyle(moduleWrapper, "opacity", "0");
 
 			clearTimeout(module.showHideTimer);
 			module.showHideTimer = setTimeout(function() {
@@ -249,7 +249,7 @@ var MM = (function() {
 				// since it's fade out anyway, we can see it lay above or
 				// below other modules. This works way better than adjusting
 				// the .display property.
-				moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/position\s*:\s*.+\s*;/, "position: fixed;"));
+				setInlineStyle(moduleWrapper, "position", "fixed");
 
 				updateWrapperStates();
 
@@ -296,15 +296,15 @@ var MM = (function() {
 
 		var moduleWrapper = document.getElementById(module.identifier);
 		if (moduleWrapper !== null) {
-			moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/transition\s*:\s*.+\s*;/, "transition: opacity " + speed / 1000 + "s;"));
+			setInlineStyle(moduleWrapper, "transition", "opacity " + speed / 1000 + "s;");
 			// Restore the position. See hideModule() for more info.
-			moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/position\s*:\s*.+\s*;/, "position: static;"));
+			setInlineStyle(moduleWrapper, "position", "static");
 
 			updateWrapperStates();
 
 			// Waiting for DOM-changes done in updateWrapperStates before we can start the animation.
 			var dummy = moduleWrapper.parentElement.parentElement.offsetHeight;
-			moduleWrapper.setAttribute("style", moduleWrapper.getAttribute("style").replace(/opacity\s*:\s*.+\s*;/, "opacity: 1;"));
+			setInlineStyle(moduleWrapper, "opacity", "1");
 
 			clearTimeout(module.showHideTimer);
 			module.showHideTimer = setTimeout(function() {
@@ -334,16 +334,18 @@ var MM = (function() {
 
 			var showWrapper = false;
 			Array.prototype.forEach.call(moduleWrappers, function(moduleWrapper) {
-				var wrapperPosition = moduleWrapper.getAttribute("style").match(/position\s*:\s*(.*)\s*;/)[0] || "";
+				var wrapperStyle = moduleWrapper.getAttribute("style") || "";
+				var wrapperPositionMatch = wrapperStyle.match(/position\s*:\s*(.+?)\s*;/)
+				var wrapperPosition = (wrapperPositionMatch)? wrapperPositionMatch[0] : "";
 				if (wrapperPosition === "" || wrapperPosition === "static") {
 					showWrapper = true;
 				}
 			});
 
 			if (showWrapper) {
-				wrapper.setAttribute("style", wrapper.getAttribute("style").replace(/display\s*:\s*.+\s*;/, "display: block;"));
+				setInlineStyle(wrapper, "display", "block");
 			} else {
-				wrapper.setAttribute("style", wrapper.getAttribute("style").replace(/display\s*:\s*.+\s*;/, "display: none;"));
+				setInlineStyle(wrapper, "display", "none");
 			}
 		});
 	};
@@ -452,6 +454,22 @@ var MM = (function() {
 		if (typeof modules.exceptWithClass === "undefined") { Object.defineProperty(modules, "exceptWithClass",  {value: exceptWithClass, enumerable: false}); }
 		if (typeof modules.exceptModule === "undefined") { Object.defineProperty(modules, "exceptModule",  {value: exceptModule, enumerable: false}); }
 		if (typeof modules.enumerate === "undefined") { Object.defineProperty(modules, "enumerate",  {value: enumerate, enumerable: false}); }
+	};
+
+	/* setInlineStyle()
+	 * Set a CSS property inline
+	 *
+	 * argument el element - DOM element
+	 * argument property string - the CSS property to set
+	 * argument value string - the new value of the CSS property.
+	 */
+	var setInlineStyle = function(el, property, value) {
+		var currentStyle = el.getAttribute("style") || "";
+		
+		var re = new RegExp(property + '\s*:\s*.+?\s*;');
+		var newStyle = currentStyle.replace(re, property ": " + value + ";");
+		
+		el.setAttribute("style", newStyle);
 	};
 
 	return {
