@@ -583,7 +583,7 @@ if (typeof Object.assign !== "function") {
 }
 
 // Add polyfill for HTMLElement.style.
-if (typeof HTMLElement.prototype.style === "undefined") {
+if (!('style' in HTMLElement.prototype)) {
 	Object.defineProperty(HTMLElement.prototype, "style", {
 		get: function style() {
 			var styleDeclaration = Object.create(CSSStyleDeclaration);
