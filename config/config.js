@@ -97,7 +97,7 @@ var config = {
 			position: 'top_left',
 			header: 'Live-Scores',
 			config: {
-				leagues: [35, 1, 9],
+				leagues: [35],
 			showNames: true,
 			showLogos: false,
 			displayTime: 60 * 1000,
