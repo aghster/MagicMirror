@@ -336,7 +336,7 @@ var MM = (function() {
 			Array.prototype.forEach.call(moduleWrappers, function(moduleWrapper) {
 				var wrapperStyle = moduleWrapper.getAttribute("style") || "";
 				var wrapperPositionMatch = wrapperStyle.match(/position\s*:\s*(.+?)\s*;/);
-				var wrapperPosition = (wrapperPositionMatch)? wrapperPositionMatch[0] : "";
+				var wrapperPosition = (wrapperPositionMatch)? wrapperPositionMatch[1] : "";
 				if (wrapperPosition === "" || wrapperPosition === "static") {
 					showWrapper = true;
 				}
