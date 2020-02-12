@@ -93,6 +93,18 @@ var config = {
 				broadcastNewsUpdates: true
 			}
 		},
+		{
+			module: 'MMM-SoccerLiveScore',
+			position: 'top_left',
+			header: 'Live-Scores',
+			config: {
+				leagues: [35, 1, 9],
+			showNames: true,
+			showLogos: false,
+			displayTime: 60 * 1000,
+			showTables: true
+			}
+		},
 	]
 
 };
