@@ -45,7 +45,7 @@ var MM = (function() {
 			dom.appendChild(moduleHeader);
 
 			if (typeof module.getHeader() === "undefined" || module.getHeader() !== "") {
-				moduleHeader.style = "display: none;";
+				moduleHeader.style.display = "none";
 			}
 
 			var moduleContent = document.createElement("div");
@@ -213,7 +213,7 @@ var MM = (function() {
 		contentWrapper[0].appendChild(newContent);
 
 		headerWrapper[0].innerHTML = newHeader;
-		headerWrapper[0].style = headerWrapper.length > 0 && newHeader ? undefined : "display: none;";
+		headerWrapper[0].style.display = headerWrapper.length > 0 && newHeader ? "" : "none";
 	};
 
 	/* hideModule(module, speed, callback)
