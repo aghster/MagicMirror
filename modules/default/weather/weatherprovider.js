@@ -98,7 +98,9 @@ var WeatherProvider = Class.extend({
 	},
 
 	// A convenience function to make requests. It returns a promise.
-	fetchData: function(url, method = "GET", data = null) {
+	fetchData: function(url, method, data) {
+		method = method || "GET";
+		data = data || null;
 		return new Promise(function(resolve, reject) {
 			var request = new XMLHttpRequest();
 			request.open(method, url, true);

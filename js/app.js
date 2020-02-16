@@ -260,18 +260,18 @@ var App = function() {
 	 * Note: this is only used if running `server-only`. Otherwise
 	 * this.stop() is called by app.on("before-quit"... in `electron.js`
 	 */
-	process.on("SIGINT", () => {
+	process.on("SIGINT", function() {
 		console.log("[SIGINT] Received. Shutting down server...");
-		setTimeout(() => { process.exit(0); }, 3000);  // Force quit after 3 seconds
+		setTimeout(function() { process.exit(0); }, 3000);  // Force quit after 3 seconds
 		this.stop();
 		process.exit(0);
 	});
 
 	/* We also need to listen to SIGTERM signals so we stop everything when we are asked to stop by the OS.
 	 */
-	process.on("SIGTERM", () => {
+	process.on("SIGTERM", function() {
 		console.log("[SIGTERM] Received. Shutting down server...");
-		setTimeout(() => { process.exit(0); }, 3000);  // Force quit after 3 seconds
+		setTimeout(function() { process.exit(0); }, 3000);  // Force quit after 3 seconds
 		this.stop();
 		process.exit(0);
 	});
