@@ -64,7 +64,7 @@ module.exports = NodeHelper.create({
 		}
 	},
 
-	preformFetch() {
+	preformFetch: function() {
 		var self = this;
 		simpleGits.forEach(function(sg) {
 			sg.git.fetch().status(function(err, data) {

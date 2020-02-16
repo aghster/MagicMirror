@@ -270,8 +270,8 @@ Module.register("newsfeed",{
 
 		// get updated news items and broadcast them
 		var updatedItems = [];
-		newsItems.forEach(value => {
-			if (this.newsItems.findIndex(value1 => value1 === value) === -1) {
+		newsItems.forEach(function(value) {
+			if (this.newsItems.findIndex(function(value1) { return value1 === value; }) === -1) {
 				// Add item to updated items list
 				updatedItems.push(value);
 			}

@@ -153,13 +153,14 @@ Module.register("weather",{
 		this.scheduleUpdate();
 	},
 
-	scheduleUpdate: function(delay = null) {
+	scheduleUpdate: function(delay) {
+		delay = delay || null;
 		var nextLoad = this.config.updateInterval;
 		if (delay !== null && delay >= 0) {
 			nextLoad = delay;
 		}
 
-		setTimeout(() => {
+		setTimeout(function() {
 			if (this.config.type === "forecast") {
 				this.weatherProvider.fetchWeatherForecast();
 			} else {
@@ -173,7 +174,7 @@ Module.register("weather",{
 		return parseFloat(temperature).toFixed(decimals);
 	},
 
-	addFilters() {
+	addFilters: function() {
 		this.nunjucksEnvironment().addFilter("formatTime", function(date) {
 			date = moment(date);
 
